@@ -16,3 +16,6 @@ Austrian Public Holidays, Day and Name of the Holiday scraped from https://zentr
 
 ## Hangman game
 Command line game
+
+## Blackjack game
+Command line game
