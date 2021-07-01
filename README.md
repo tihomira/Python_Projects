@@ -19,3 +19,6 @@ Command line game
 
 ## Blackjack game
 Command line game
+
+## Higher Lower game
+Command line game
