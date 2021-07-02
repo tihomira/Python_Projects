@@ -22,3 +22,6 @@ Command line game
 
 ## Higher Lower game
 Command line game
+
+## Coffee Shop
+Command line Coffee Shop
