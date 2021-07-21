@@ -25,3 +25,6 @@ Command line game
 
 ## Coffee Shop
 Command line Coffee Shop
+
+## Quiz Game
+Command line game - Classes basics
