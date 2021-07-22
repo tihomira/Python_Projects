@@ -3,6 +3,7 @@
 ## Rock Paper Scissors
 Command Line Game
 ![Rock Paper Scissors](Rock_paper_scissors/rock_paper_scissors_thumb.png)
+short version  
 ![Rock Paper Scissors Short](Rock_paper_scissors/rock_paper_scissors_short_thumb.png)
 
 
