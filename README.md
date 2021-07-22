@@ -31,3 +31,6 @@ Command Line Game - Classes basics
 
 ## Turtle Game
 Simple Graphical Betting Game
+
+## Snake Game
+Classic Snake Game
