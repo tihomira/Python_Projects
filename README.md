@@ -34,3 +34,6 @@ Simple Graphical Betting Game
 
 ## Snake Game
 Classic Snake Game
+
+## Pong Game
+Classic Pong Game
