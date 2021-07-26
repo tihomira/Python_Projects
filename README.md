@@ -64,3 +64,7 @@ US State Map Game is tracking correctly guessed states and saving the incorrectl
 ## Time Tracker
 Time Tracker based on the Pomodoro Technique
 ![Time Tracker](Pomodoro_Tracker/pomodoro_tracker_thumb.png)
+
+## Password Manager
+Password Manager Mini Local App - generates and saves passwords and details of an account
+![Password Manager](Password_Manager/password_manager_thumb.png)
