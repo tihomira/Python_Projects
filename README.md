@@ -68,3 +68,7 @@ Time Tracker based on the Pomodoro Technique
 ## Password Manager
 Password Manager Mini Local App - generates and saves passwords and details of an account
 ![Password Manager](Password_Manager/password_manager_thumb.png)
+
+## Flashcards App
+Top 2000 German words with English translation as a Flashcard App
+![Flashcards App](Flashcards_App/flashcard_app_thumb.png)
