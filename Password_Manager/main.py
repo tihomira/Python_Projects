@@ -45,7 +45,7 @@ def save():
                 data = json.load(data_file)
         except FileNotFoundError:
             with open("data.json", "w") as data_file:
-                json.dump(new_data,data_file, indent=4)
+                json.dump(new_data, data_file, indent=4)
         else:
             data.update(new_data)
 
@@ -54,6 +54,26 @@ def save():
         finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
+
+
+# ---------------------------- UI SETUP ------------------------------- #
+
+def find_password():
+    website = website_entry.get()
+    try:
+        with open("data.json") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error", message="No data file found.")
+    else:
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=website,
+                                message=f"Email: {email}"
+                                        f"\nPassword: {password}")
+        else:
+            messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -76,8 +96,8 @@ password_label = Label(text="Password:")
 password_label.grid(row=3, column=0)
 
 # Entries
-website_entry = Entry(width=37)
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry = Entry(width=22)
+website_entry.grid(row=1, column=1)
 website_entry.focus()
 
 email_entry = Entry(width=37)
@@ -88,7 +108,10 @@ password_entry = Entry(width=22)
 password_entry.grid(row=3, column=1)
 
 # Buttons
-generate_password_button = Button(text="Generate Password:", command=generate_password)
+search_button = Button(text="Search", width=14, command=find_password)
+search_button.grid(row=1, column=2)
+
+generate_password_button = Button(text="Generate Password", command=generate_password)
 generate_password_button.grid(row=3, column=2)
 
 add_button = Button(text="Add", width=38, command=save)
