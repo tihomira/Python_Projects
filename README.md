@@ -40,6 +40,10 @@ Command Line Coffee Shop
 Command Line Game - Classes basics
 ![Quiz_Game](Quiz_Game/quiz_thumb.png)
 
+## Quizzler App
+Upgraded version of Quiz Game
+![Quizzler_App](Quizzler_App/quiz_game_app_thumb.png)
+
 ## Turtle Game
 Simple Graphical Betting Game
 ![Turtle_Race](Turtle_Race/turtle_race_thumb.png)
@@ -72,3 +76,10 @@ Password Manager Mini Local App - generates and saves passwords and details of a
 ## Flashcards App
 Top 2000 German words with English translation as a Flashcard App
 ![Flashcards App](Flashcards_App/flashcard_app_thumb.png)
+
+## Kanye Quotes Rest API
+Rest API practice. On click on Kanye different quotes are displayed. 
+![Kanye_Quotes_Rest_API](Rest_API_Projects/Kanye_Quotes_Rest_API/Kanye_Quotes_Rest_API_thumb.png)
+
+## ISS Tracker
+Send an email if the International Space Station is near a provided lat and lng and if it is dark.
