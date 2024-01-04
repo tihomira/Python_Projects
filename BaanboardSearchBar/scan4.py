@@ -6,9 +6,6 @@ import os
 # Specify the path to your HTML files folder
 html_folder_path = '/Users/tihomiranikolova/Documents/Python_projects/Python_projects_git/Python_Projects/BaanboardSearchBar/website'
 
-# Initialize an empty list to store the content of each HTML file
-html_content_list = []
-
 # Initialize an empty list to store all data from different HTML files
 all_data = []
 
