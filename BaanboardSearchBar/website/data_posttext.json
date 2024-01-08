@@ -1,0 +1,570 @@
+[
+  {
+    "file": "f-8-p-329d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-339d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-35.html",
+    "posttext": ""
+  },
+  {
+    "file": "t-99999d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-23.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-77.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-19.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-3.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-39.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-749d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-389d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-399d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-59d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-49d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-15.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-42.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-43.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-14.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-10.html",
+    "posttext": ""
+  },
+  {
+    "file": "index.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-259d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-249d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "t-999d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-38.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-18.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-2.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-79d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-69d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-76.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-22.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-119d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-109d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-34.html",
+    "posttext": ""
+  },
+  {
+    "file": "t-9996.html",
+    "posttext": "i want to cat two files together.  i know i can do it with shell(), but i am trying to be good and use run.prog for future support.  i understand that run.prog doesn't like \">\" in the argument section.  how do i get around this?e = run.prog(\"cat\", tmp_file & \".header \" &tmp_file & \".sort > \" &f.in.dir & \"/\" & f.in.name, rp_wait)the above is what i have tried, but it doesn't seem to work.cheers,-dennis =|=|= this might work:cmd = \"cat \" & tmpfile & \".header\" & tmpfile &\".sort > \" & f.in.dir & \"/\" & f.in.namee=run.prog(\"csh\",cmd,rp_wait)i use something like this.mark =|=|= mark,tried it a few ways based on your suggestion:1) command = ksh but leave args to be built in run.prog command2) new variable to build argument list but stil call command = cat in run.prog3) new variable for args and also put 'cat' in the args and call command = ksh.none of the three work.for the time being, i have resorted to shell().thanks for the try.cheers,-dennis =|=|= dennis,i had the similar issue as you but i prefer not to use cat in case of over writing existing file, or write access to certain directories etc.hence, i made a generic function to handle it in baan tools. its simple and os independent.function extern\tlong\tappend.file(string source(256), string\ttarget(256)){dllusageappend source file to a target file.return : 0=file handling errors, or source = target; 1=successenddllusagelong\tfp1, fp2string\tbuffer(1024)if source = target thenreturn(0)endiffp1 = seq.open(source, \"r\")fp2 = seq.open(target, \"a\")if fp1 < 0 or fp2 < 0 thenmess(\"zmadms0010\", 1)\t\t|* file handling errorsreturn(0)endifwhile not seq.gets(buffer, 1024, fp1)e = seq.puts(buffer, fp2)endwhilee = seq.close(fp1)e = seq.close(fp2)return(1)} =|=|= i made a small discovery today that, while not documented as such, run.prog (http://www.baanboard.com/programmers_manual_baanerp_help_functions_starting_and_stopping_programs_run_baan_prog_run_prog) will accept the extra three parameters of stdin, stdout & stderr just like run.baan.prog (http://www.baanboard.com/programmers_manual_baanerp_help_functions_starting_and_stopping_programs_run_baan_prog_run_prog) does.therefore, the above command would probably be:e = run.prog(\"cat\",tmp_file & \".header \" & tmp_file & \".sort \",rp_wait,\"\",f.in.dir & \"/\" & f.in.name,\"\")cheers,-dennis"
+  },
+  {
+    "file": "f-8-p-229d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-239d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-79d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-29.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-13.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-9.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-33.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-289d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-299d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-7.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-7.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-25.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-169d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-179d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-71.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-5.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-11.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-10.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-4.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-359d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-349d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-70.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-799d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-24.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-6.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-6.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-32.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-89d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-429d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-99d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-439d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-12.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-8.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-28.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-29d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-39d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-11.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-49d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-59d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-9.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-9.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-129d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-139d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-13.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-7.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-269d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-279d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-27.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-5.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-5.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-189d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-199d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-31.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-30.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-779d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-769d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "t-9999.html",
+    "posttext": "dear all.does mrp consider blocked lot items?is there any other way to hide raw material from mrp?thanksdaniel =|=|= wrong forum, thread moved. =|=|= hi daniel,the only way you'll be able to hide inventory from mrp is to place it in a non-nettable warehouse.regards,rupert =|=|= you can create dummy sales order and do hard allocation of material for the order. in this case it will not consider the stock. but this will impact on your demand.other way could be create non-nettable w/h and do not use this w/h in bom. but here you will have the overhead of transfer orders.-- avinash =|=|= thanks for your feedback, very much appreciated.i do have a last question.what is the impact on inventory valuation on regards a non-nettable warehouse?thanks againdaniel"
+  },
+  {
+    "file": "f-7-p-109d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-4.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-4.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-26.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-69d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-79d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-6.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-12.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-319d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-309d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-13.html",
+    "posttext": ""
+  },
+  {
+    "file": "t-9995.html",
+    "posttext": "hope this tip is useful for everyone here...c:\\program files\\baan\\worktop\\bin> worktop -? =|=|= the release notes shipped with worktop (\"releasenotes.htm\" on the cd or installation media) contains also a summary of all command line options, including some more explanation. =|=|= ivo is right :p and there is good documenation/info about various features/bug fixes in version etc in the c:\\program files\\baan\\worktop\\technicalnotes.htmibaan worktop 2.2.27technical notestable of contentsnotesknown bugs/issuesbugfix overviewtroubleshootingnotesa common windows 2000 problem is that when baan sessions are launched from within worktop, they appear in back of the worktop application. this problem is not restricted to worktop but many applications will show this behavior. the reason is that windows 2000 by default does not allow applications to \"steal the focus\". to solve this, download the tweakui application from the microsoft site. extract the executable. after extraction, go to that folder and find the \"tweakui.inf\" file. right click on this file and select the \"install\" option from the context menu. after installation, double click the \"tweak ui\" icon located in the control panel and go to the tab called \"general\". there is a checkbox with the label \"prevent applications from stealing focus\". uncheck this box.as an alternative, you can edit the systems registry manually: open regedit (win2k\\xp) or regedt32 (win98), locate the \"foregroundlocktimeout\" key in hkey_current_user\\control panel\\desktop and set its value to 0.worktop help will only work when internet explorer 4.1 sp2 is installed, but an automatic internet explorer update is provided whenever at least internet explorer 4.0 is installed....worktop 2.2.17 and later versions support multibyte languages. however, this only applies to the worktop application itself. the baan data navigator is not multibyte enabled and therefore the bdn integration of worktop cannot be used on operating systems running multibyte languages.this version of worktop is a full version. it contains all available translations and documentation. documentation can be found in the /documents directory of the installation media. during installation a list of all available languages is displayed from which the languages can be selected that should be installed. included languages are; chinese (simplified), danish, dutch, english, finnish, french, german, italian, japanese, korean, portuguese (brazilian), portuguese (european), spanish and swedish...."
+  },
+  {
+    "file": "f-7-p-8.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-8.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-10.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-709d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-719d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "t-75957.html",
+    "posttext": "i have created dem business processes with roles.the menu of dem business processes includes 1st show process and then list of activities/ processes which are mentioned in e-r diagram application.when i have assigned dem roles to specific users, it has been found that for some processes user is getting error as java.lang.illegalargumentexceptionthis error is coming not to all processes. some processes are visible and some are not.if i changed type of that user from normal to super , user will able to see all processess e-r diagram in show process.i have attached screen shot of error .kindly revert on this"
+  },
+  {
+    "file": "f-8-p-21.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-3.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-3.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-37.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-40.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-17.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-369d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-379d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-79.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-419d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-409d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "t-9993.html",
+    "posttext": "actually working in europe (baan company) , i'll be available for any job.area : unix/nt/oracle/sql"
+  },
+  {
+    "file": "f-8-p-39d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-29d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-13-p-2.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-10-p-11.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-159d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-149d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-16.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-41.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-99d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-89d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-36.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-219d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-209d6a.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-7-p-2.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-6-p-2.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-8-p-20.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-1.html",
+    "posttext": ""
+  },
+  {
+    "file": "f-74.html",
+    "posttext": ""
+  }
+]

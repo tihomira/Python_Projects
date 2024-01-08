@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+
+<!-- Mirrored from www.baanboard.com/baanboard/archive/index.php/t-9996.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Dec 2023 14:35:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="keywords" content="Cat two files, baan,baanerp,erp,forum,discussion,bulletin board" />
+	<meta name="description" content="[Archive] Cat two files Tools Development" />
+	
+	<title>Cat two files [Archive]  - Baanboard.com</title>
+	<link rel="stylesheet" type="text/css" href="../archive.css" />
+</head>
+<body>
+<div class="pagebody">
+<div id="navbar"><a href="index.html">Baanboard.com</a> &gt; <a href="f-1.html">Baan Quick Support: Functional &amp; Technical</a> &gt; <a href="f-8.html">Tools Development</a> &gt; Cat two files</div>
+<hr />
+<div class="pda"><a href="t-99969d6a.html?login=1" rel="nofollow">Log in</a></div>
+<p class="largefont">View Full Version : <a href="http://www.baanboard.com/baanboard/showthread.php?t=9996">Cat two files</a></p>
+<hr />
+
+<div class="post"><div class="posttop"><div class="username">dnnslbrwn</div><div class="date">13th May 2003, 22:56</div></div><div class="posttext">I want to cat two files together.  I know I can do it with shell(), but I am trying to be good and use run.prog for future support.  I understand that run.prog doesn't like &quot;&gt;&quot; in the argument section.  How do I get around this?<br />
+<br />
+<br />
+ e = run.prog(&quot;cat&quot;, tmp_file &amp; &quot;.header &quot; &amp;<br />
+                     tmp_file &amp; &quot;.sort &gt; &quot; &amp;<br />
+                     f.in.dir &amp; &quot;/&quot; &amp; f.in.name, RP_WAIT)<br />
+<br />
+<br />
+The above is what I have tried, but it doesn't seem to work.<br />
+<br />
+Cheers,<br />
+<br />
+-Dennis</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">mark_h</div><div class="date">13th May 2003, 23:42</div></div><div class="posttext">This might work:<br />
+<br />
+<br />
+cmd = &quot;cat &quot; &amp; tmpfile &amp; &quot;.header&quot; &amp; tmpfile &amp;&quot;.sort &gt; &quot; &amp; f.in.dir &amp; &quot;/&quot; &amp; f.in.name<br />
+e=run.prog(&quot;csh&quot;,cmd,RP_WAIT)<br />
+<br />
+<br />
+I use something like this.<br />
+<br />
+Mark</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">dnnslbrwn</div><div class="date">14th May 2003, 00:28</div></div><div class="posttext">Mark,<br />
+<br />
+Tried it a few ways based on your suggestion:<br />
+<br />
+1) command = ksh but leave args to be built in run.prog command<br />
+2) new variable to build argument list but stil call command = cat in run.prog<br />
+3) new variable for args and also put 'cat' in the args and call command = ksh.<br />
+<br />
+None of the three work.<br />
+<br />
+For the time being, I have resorted to shell().  <br />
+<br />
+Thanks for the try.<br />
+<br />
+Cheers,<br />
+<br />
+-Dennis</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">NPRao</div><div class="date">14th May 2003, 00:46</div></div><div class="posttext">Dennis, <br />
+<br />
+I had the similar issue as you but I prefer not to use cat in case of over writing existing file, or write access to certain directories etc.<br />
+<br />
+Hence, I made a generic function to handle it in BaaN Tools. Its simple and OS independent.<br />
+<br />
+<br />
+function extern	long	append.file(string source(256), string	target(256))<br />
+{<br />
+DLLUSAGE<br />
+	Append source file to a target file.<br />
+	return : 0=File Handling Errors, or source = target; 1=Success<br />
+ENDDLLUSAGE<br />
+long	fp1, fp2<br />
+string	buffer(1024)<br />
+if source = target then<br />
+	return(0)<br />
+endif<br />
+fp1 = seq.open(source, &quot;r&quot;)<br />
+fp2 = seq.open(target, &quot;a&quot;)<br />
+if fp1 &lt; 0 or fp2 &lt; 0 then<br />
+	mess(&quot;zmadms0010&quot;, 1)		|* File Handling Errors<br />
+	return(0)<br />
+endif<br />
+while not seq.gets(buffer, 1024, fp1)<br />
+	e = seq.puts(buffer, fp2)<br />
+endwhile<br />
+e = seq.close(fp1)<br />
+e = seq.close(fp2)<br />
+return(1)<br />
+}</div></div><hr />
+
+
+<div class="post"><div class="posttop"><div class="username">dnnslbrwn</div><div class="date">20th January 2004, 18:36</div></div><div class="posttext">I made a small discovery today that, while not documented as such, run.prog (http://www.baanboard.com/programmers_manual_baanerp_help_functions_starting_and_stopping_programs_run_baan_prog_run_prog) will accept the extra three parameters of stdin, stdout &amp; stderr just like run.baan.prog (http://www.baanboard.com/programmers_manual_baanerp_help_functions_starting_and_stopping_programs_run_baan_prog_run_prog) does.  <br />
+<br />
+Therefore, the above command would probably be:<br />
+<br />
+<br />
+ e = run.prog(&quot;cat&quot;, <br />
+              tmp_file &amp; &quot;.header &quot; &amp; tmp_file &amp; &quot;.sort &quot;, <br />
+              RP_WAIT,<br />
+              &quot;&quot;,  <br />
+              f.in.dir &amp; &quot;/&quot; &amp; f.in.name, <br />
+              &quot;&quot;)<br />
+<br />
+<br />
+<br />
+Cheers,<br />
+<br />
+-Dennis</div></div><hr />
+
+
+
+</div>
+</body>
+
+<!-- Mirrored from www.baanboard.com/baanboard/archive/index.php/t-9996.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Dec 2023 14:35:15 GMT -->
+</html>
