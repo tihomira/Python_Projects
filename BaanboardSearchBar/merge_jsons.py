@@ -1,25 +1,27 @@
 import json
+import re
 
 # Read the contents of the first file
-with open('website/data_title_links_replies.json', 'r') as file1:
+with open('data_title_links_replies.json', 'r') as file1:
     data1 = json.load(file1)
 
 # Read the contents of the second file
-with open('website/data_posttext.json', 'r') as file2:
+with open('data_posttext.json', 'r') as file2:
     data2 = json.load(file2)
 
 # Read the contents of the third file
-with open('website/data_navbar.json', 'r') as file3:
+with open('data_navbar.json', 'r') as file3:
     data3 = json.load(file3)
 
 # Create a dictionary to store the merged data
 merged_data_dict = {}
 
 # Perform left join on the 'file' key for data1
-for entry in data1:
+for idx, entry in enumerate(data1):
     file_key = entry.get("file")
     # Create a dictionary for each file with initial values
     merged_data_dict[file_key] = {
+        "id": idx + 1,  # Adding 1 to make the index start from 1
         "title": entry.get("title", ""),
         "file": entry.get("file", ""),
         "replies": entry.get("replies", ""),
@@ -44,13 +46,15 @@ for entry in data3:
         merged_data_dict[file_key]["subcategory"] = entry.get("subcategory", None)
         print(f'category and subcategory{merged_data_dict[file_key]}')
 
-
-
 # Convert the merged dictionary values to a list
 merged_data_list = list(merged_data_dict.values())
 
+# Replace multiple spaces with a single space in 'posttext' for the entire list
+for entry in merged_data_list:
+    entry["posttext"] = re.sub(r'\s+', ' ', entry["posttext"])
+
 # Write the merged data to a new file
-with open('merged_data.json', 'w',errors='replace') as merged_file:
+with open('merged_data_id.json', 'w', errors='replace') as merged_file:
     json.dump(merged_data_list, merged_file, indent=2)
 
 print("Merged data written to merged_data.json")
