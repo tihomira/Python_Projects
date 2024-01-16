@@ -2,15 +2,15 @@ import json
 import re
 
 # Read the contents of the first file
-with open('data_title_links_replies.json', 'r') as file1:
+with open('data_title_links_replies.json', 'r',encoding='utf-8', errors='replace') as file1:
     data1 = json.load(file1)
 
 # Read the contents of the second file
-with open('data_posttext.json', 'r') as file2:
+with open('data_posttext.json', 'r',encoding='utf-8', errors='replace') as file2:
     data2 = json.load(file2)
 
 # Read the contents of the third file
-with open('data_navbar.json', 'r') as file3:
+with open('data_navbar.json', 'r',encoding='utf-8', errors='replace') as file3:
     data3 = json.load(file3)
 
 # Create a dictionary to store the merged data
@@ -54,7 +54,7 @@ for entry in merged_data_list:
     entry["posttext"] = re.sub(r'\s+', ' ', entry["posttext"])
 
 # Write the merged data to a new file
-with open('merged_data_id.json', 'w', errors='replace') as merged_file:
+with open('merged_data_id.json', 'w', encoding='utf-8', errors='replace') as merged_file:
     json.dump(merged_data_list, merged_file, indent=2)
 
-print("Merged data written to merged_data.json")
+print("Merged data written to merged_data_id.json")
